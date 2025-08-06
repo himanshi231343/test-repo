@@ -3,20 +3,25 @@ name: FTP Deploy
 on:
   push:
     branches:
-      - main
+      - main  # Or replace with your target branch
 
 jobs:
   ftp-deploy:
-    name: Deploy via FTP
+    name: Upload files to AlmaLinux server via FTP
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/DNH_TEST/
+          server-dir: /public_html/DNH_TEST/   # Change if your path is different
+          protocol: ftp
+          port: 21
+          local-dir: ./  # You can change this to a subfolder if needed
+          dangerous-clean-slate: false
