@@ -3,7 +3,7 @@ name: FTP Deploy
 on:
   push:
     branches:
-      - main  # or your default branch name
+      - main  # Trigger deployment when changes are pushed to the main branch
 
 jobs:
   ftp-deploy:
@@ -17,11 +17,11 @@ jobs:
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.uat.qtloads.com
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/DNH_TEST/
-          protocol: ftp
-          port: 21
-          local-dir: ./
-          dangerous-clean-slate: false
+          server: ftp.uat.qtloads.com              # ✅ Your actual FTP server hostname
+          username: ${{ secrets.FTP_USERNAME }}    # ✅ Add this in GitHub repository Secrets
+          password: ${{ secrets.FTP_PASSWORD }}    # ✅ Add this in GitHub repository Secrets
+          protocol: ftp                            # ✅ Use FTP
+          port: 21                                 # ✅ Default FTP port
+          server-dir: /public_html/DNH_TEST/       # ✅ Relative to FTP root, matches your full path
+          local-dir: ./                            # ✅ Upload current directory contents
+          dangerous-clean-slate: false             # ✅ Avoid deleting all files before upload
