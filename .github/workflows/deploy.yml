@@ -20,7 +20,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/DNH_TEST/
+          server-dir: /uat.qtloads.com/public_html/DNH_TEST/
           protocol: ftp
           port: 21
           local-dir: ./
